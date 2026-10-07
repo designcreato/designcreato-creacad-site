@@ -3,59 +3,411 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CreaCad · Services de CAO</title>
-<meta name="description" content="CreaCad, une division de Design Creato : modélisation 3D, mises en plan et services de CAO. Nouveau site en préparation.">
-<meta name="theme-color" content="#121418">
+<title>CreaCad · Services de CAO et mises en plan</title>
+<meta name="description" content="CreaCad, division CAO de Design Creato : modélisation 3D, mises en plan de fabrication, rétro-ingénierie et conversion de fichiers.">
+<meta name="theme-color" content="#0f1216">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' rx='4' fill='none' stroke='%23ef6a1e' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%232e8fd0'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Public+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap">
 <style>
-:root { --bg: #121418; --fg: #eceae5; --muted: #9a9ea6; --rule: #2a2e35; --orange: #ef6a1e; --blue: #2e8fd0;
-  --head: "Archivo", "Helvetica Neue", Arial, sans-serif; --text: "Public Sans", "Segoe UI", system-ui, sans-serif; color-scheme: dark; }
+:root {
+  --bg: #0f1216; --panel: #151a20; --panel-2: #1b2129; --line: #27303a; --grid: rgba(46,143,208,.07);
+  --fg: #e8eaed; --muted: #98a1ac; --orange: #ef6a1e; --orange-dark: #d45810; --blue: #2e8fd0;
+  --sans: "Inter", "Segoe UI", system-ui, sans-serif; --mono: "DM Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
 * { box-sizing: border-box; }
-html, body { height: 100%; }
-body { margin: 0; background: var(--bg); color: var(--fg); font: 400 1.0625rem/1.65 var(--text); display: flex; flex-direction: column; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 1.0625rem/1.65 var(--sans);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px; }
 a { color: inherit; }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+.wrap { max-width: 1120px; margin-inline: auto; padding-inline: 24px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
 html[lang="fr-CA"] [data-l="en"], html[lang="en-CA"] [data-l="fr"] { display: none !important; }
-.wrap { width: 100%; max-width: 880px; margin-inline: auto; padding-inline: 24px; }
-header .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: 24px; }
-.brand { font: 800 1.25rem/1 var(--head); letter-spacing: -.01em; }
+.tag { font: 500 .78rem/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--blue); }
+
+/* En-tête */
+header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: rgba(15,18,22,.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; font: 800 1.2rem/1 var(--sans); letter-spacing: -.02em; text-decoration: none; }
+.brand svg { width: 26px; height: 26px; }
 .brand span { color: var(--orange); }
-.lang { font: 600 .8rem/1 var(--text); background: none; border: 1px solid var(--rule); color: var(--fg); padding: 8px 10px; border-radius: 4px; cursor: pointer; }
-main { flex: 1; display: flex; align-items: center; }
-main .wrap { display: flex; flex-direction: column; gap: 22px; padding-block: 48px; }
-.kicker { font: 600 .82rem/1 var(--text); letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
-h1 { margin: 0; font: 800 clamp(2.2rem, 6vw, 3.8rem)/1.04 var(--head); letter-spacing: -.03em; text-wrap: balance; }
-h1 b { color: var(--orange); }
-p { margin: 0; color: var(--muted); max-width: 52ch; font-size: 1.12rem; }
-.links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
-.btn { text-decoration: none; font: 600 1rem/1 var(--text); padding: 15px 22px; border-radius: 4px; background: var(--orange); color: #fff; }
-.btn.line { background: none; border: 1px solid var(--rule); color: var(--fg); }
-.btn:hover { filter: brightness(1.08); }
-footer { border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; }
-footer .wrap { padding-block: 22px 28px; }
+.right { display: flex; align-items: center; gap: 14px; }
+.wip { font: 500 .74rem/1 var(--mono); color: var(--muted); border: 1px dashed var(--line); padding: 7px 10px; border-radius: 4px; }
+.wip::before { content: "● "; color: var(--orange); }
+.lang { font: 500 .78rem/1 var(--mono); background: none; border: 1px solid var(--line); color: var(--fg); padding: 8px 10px; border-radius: 4px; cursor: pointer; }
+.lang:hover { border-color: var(--fg); }
+.btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font: 600 .95rem/1 var(--sans); padding: 14px 20px; border-radius: 4px; background: var(--orange); color: #fff; border: 0; cursor: pointer; }
+.btn:hover { background: var(--orange-dark); }
+.btn.line { background: none; border: 1px solid var(--line); color: var(--fg); }
+.btn.line:hover { border-color: var(--fg); background: none; }
+header .btn { padding: 10px 14px; font-size: .88rem; }
+@media (max-width: 640px) { .wip { display: none; } }
+
+/* Ouverture */
+.hero { padding-block: clamp(48px, 8vw, 96px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.hero-copy { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800; line-height: 1.04; letter-spacing: -.035em; }
+.hero h1 b { color: var(--orange); font-weight: 800; }
+.hero-copy > p { color: var(--muted); font-size: 1.12rem; max-width: 46ch; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.specs { display: flex; flex-wrap: wrap; gap: 8px 22px; font: 400 .82rem/1.4 var(--mono); color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
+.specs b { color: var(--fg); font-weight: 500; }
+.drawing { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; position: relative; min-width: 0; }
+.drawing .title { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--line); font: 500 .72rem/1 var(--mono); color: var(--muted); letter-spacing: .06em; }
+.drawing svg { display: block; width: 100%; height: auto; padding-top: 34px; }
+.d-part { fill: none; stroke: var(--fg); stroke-width: 2; }
+.d-hid { fill: none; stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 6 4; }
+.d-ctr { fill: none; stroke: var(--orange); stroke-width: 1; stroke-dasharray: 14 3 2 3; }
+.d-dim { fill: none; stroke: var(--blue); stroke-width: 1; }
+.d-arr { fill: var(--blue); }
+.d-txt { fill: var(--fg); font: 500 11px var(--mono); }
+.d-note { fill: var(--orange); font: 500 10.5px var(--mono); }
+.d-bg { fill: var(--panel); }
+.d-hatch { stroke: var(--muted); stroke-width: .8; }
+@media (max-width: 880px) { .hero .wrap { grid-template-columns: 1fr; } }
+
+/* Sections */
+section { padding-block: clamp(56px, 8vw, 96px); border-top: 1px solid var(--line); }
+.head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px 56px; align-items: end; margin-bottom: 40px; }
+.head h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.08; margin-top: 12px; }
+.head p { color: var(--muted); max-width: 48ch; }
+@media (max-width: 800px) { .head { grid-template-columns: 1fr; } }
+
+.svc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.svc article { background: var(--panel); padding: 28px 24px 30px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.svc .code { font: 500 .74rem/1 var(--mono); color: var(--orange); letter-spacing: .06em; }
+.svc h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -.01em; }
+.svc p { color: var(--muted); font-size: .95rem; }
+.svc ul { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: .9rem; }
+.svc li { padding-left: 16px; position: relative; }
+.svc li::before { content: ""; position: absolute; left: 0; top: .62em; width: 7px; height: 1.5px; background: var(--blue); }
+@media (max-width: 900px) { .svc { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .svc { grid-template-columns: 1fr; } }
+
+/* Outils et formats */
+.tools { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 24px; min-width: 0; }
+.box h3 { font: 500 .78rem/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; }
+table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+th, td { text-align: left; padding: 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child th, tr:last-child td { border-bottom: 0; }
+th { font: 500 .85rem/1.5 var(--mono); color: var(--fg); width: 34%; padding-right: 16px; }
+td { color: var(--muted); }
+@media (max-width: 800px) { .tools { grid-template-columns: 1fr; } }
+
+/* Fonctionnement */
+.how { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; counter-reset: s; }
+.how li { border-top: 2px solid var(--line); padding-top: 16px; display: flex; flex-direction: column; gap: 8px; counter-increment: s; min-width: 0; }
+.how li::before { content: "0" counter(s); font: 500 .8rem/1 var(--mono); color: var(--orange); }
+.how b { font-weight: 700; }
+.how span { color: var(--muted); font-size: .95rem; }
+@media (max-width: 900px) { .how { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .how { grid-template-columns: 1fr; } }
+
+/* Contact */
+.contact .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 40px 64px; }
+.contact-info { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.contact-info h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.08; }
+.contact-info p { color: var(--muted); max-width: 42ch; }
+.mail { font: 500 1.1rem/1.3 var(--mono); color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--orange); align-self: flex-start; overflow-wrap: anywhere; }
+form { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: clamp(20px, 3vw, 30px); display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field label { font: 500 .78rem/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.field input, .field select, .field textarea { font: 400 1rem/1.4 var(--sans); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 11px 12px; width: 100%; }
+.field textarea { min-height: 110px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--blue); }
+.consent { font-size: .8rem; color: var(--muted); }
+.foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.foot .btn:disabled { opacity: .6; cursor: wait; }
+.msg { font-size: .86rem; color: var(--muted); }
+@media (max-width: 860px) { .contact .wrap { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
+
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 24px 32px; }
+footer a { text-decoration: none; }
+footer a:hover { color: var(--fg); }
 </style>
 </head>
 <body>
-<header><div class="wrap">
-  <span class="brand">Crea<span>Cad</span></span>
-  <button class="lang" type="button" id="lang"><span data-l="fr">EN</span><span data-l="en">FR</span></button>
-</div></header>
-<main><div class="wrap">
-  <span class="kicker"><span data-l="fr">Une division de Design Creato</span><span data-l="en">A Design Creato division</span></span>
-  <h1><span data-l="fr">Services de CAO, <b>nouveau site bientôt</b>.</span><span data-l="en">CAD services, <b>new website coming soon</b>.</span></h1>
-  <p><span data-l="fr">Modélisation 3D, mises en plan et conversion de fichiers. Notre nouveau site est en préparation. En attendant, écrivez-nous pour toute demande.</span><span data-l="en">3D modelling, manufacturing drawings and file conversion. Our new website is on its way. In the meantime, contact us with any request.</span></p>
-  <div class="links">
-    <a class="btn" href="mailto:info@designcreato.ca">info@designcreato.ca</a>
-    <a class="btn line" href="https://designcreato.ca">designcreato.ca</a>
+<header>
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="CreaCad">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="4" fill="none" stroke="#ef6a1e" stroke-width="3"/><circle cx="16" cy="16" r="5" fill="#2e8fd0"/></svg>
+      Crea<span>Cad</span>
+    </a>
+    <div class="right">
+      <span class="wip"><span data-l="fr">Site en préparation</span><span data-l="en">Site in progress</span></span>
+      <button class="lang" type="button" id="lang"><span data-l="fr">EN</span><span data-l="en">FR</span></button>
+      <a class="btn" href="#contact"><span data-l="fr">Soumission</span><span data-l="en">Get a quote</span></a>
+    </div>
   </div>
-</div></main>
-<footer><div class="wrap">© <span id="yr">2026</span> CreaCad · Design Creato</div></footer>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="tag"><span data-l="fr">Services de CAO · Division de Design Creato</span><span data-l="en">CAD services · A Design Creato division</span></span>
+        <h1><span data-l="fr">Modèles 3D et mises en plan <b>prêts pour l'atelier</b>.</span><span data-l="en">3D models and drawings <b>ready for the shop floor</b>.</span></h1>
+        <p><span data-l="fr">CreaCad réalise vos travaux de conception assistée par ordinateur à l'heure : modélisation, dessins de fabrication, rétro-ingénierie et conversion de fichiers. Sans mandat de conception complet, sans engagement à long terme.</span><span data-l="en">CreaCad handles your computer-aided design work by the hour: modelling, manufacturing drawings, reverse engineering and file conversion. No full design contract, no long-term commitment.</span></p>
+        <div class="actions">
+          <a class="btn" href="#contact"><span data-l="fr">Demander une soumission</span><span data-l="en">Request a quote</span> →</a>
+          <a class="btn line" href="#services"><span data-l="fr">Voir les services</span><span data-l="en">See services</span></a>
+        </div>
+        <div class="specs">
+          <span><b>Onshape</b> · <b>Fusion 360</b></span>
+          <span>STEP · IGES · DXF · STL · PDF</span>
+          <span><span data-l="fr">Métrique ou impérial</span><span data-l="en">Metric or imperial</span></span>
+        </div>
+      </div>
+
+      <figure class="drawing" style="margin:0">
+        <div class="title"><span>CC-0142 · SUPPORT</span><span>ÉCH. 1:2 · RÉV. B</span></div>
+        <svg viewBox="0 0 480 330" role="img" aria-label="Mise en plan d'un support en L avec cotes, alésages et coupe">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 z" class="d-arr"/></marker>
+            <clipPath id="sect"><rect x="300" y="86" width="22" height="174"/></clipPath>
+          </defs>
+          <path class="d-part" d="M70 86 H250 V112 H110 Q96 112 96 126 V260 H70 Z"/>
+          <line class="d-hid" x1="160" y1="86" x2="160" y2="112"/><line class="d-hid" x1="176" y1="86" x2="176" y2="112"/>
+          <line class="d-hid" x1="210" y1="86" x2="210" y2="112"/><line class="d-hid" x1="226" y1="86" x2="226" y2="112"/>
+          <line class="d-ctr" x1="168" y1="74" x2="168" y2="124"/><line class="d-ctr" x1="218" y1="74" x2="218" y2="124"/>
+          <line class="d-hid" x1="70" y1="186" x2="96" y2="186"/><line class="d-hid" x1="70" y1="214" x2="96" y2="214"/>
+          <line class="d-ctr" x1="58" y1="200" x2="108" y2="200"/>
+          <g clip-path="url(#sect)">
+            <path class="d-hatch" d="M280 100l60-60M280 120l60-60M280 140l60-60M280 160l60-60M280 180l60-60M280 200l60-60M280 220l60-60M280 240l60-60M280 260l60-60M280 280l60-60M280 300l60-60M280 320l60-60"/>
+          </g>
+          <rect class="d-part" x="300" y="86" width="22" height="174"/>
+          <rect class="d-bg" x="300" y="186" width="22" height="28"/>
+          <rect class="d-part" x="300" y="186" width="22" height="28" style="stroke-width:1.4"/>
+          <line class="d-ctr" x1="288" y1="200" x2="334" y2="200"/>
+          <text class="d-txt" x="291" y="280">A-A</text>
+          <line class="d-dim" x1="70" y1="78" x2="70" y2="50"/><line class="d-dim" x1="250" y1="78" x2="250" y2="50"/>
+          <line class="d-dim" x1="70" y1="58" x2="250" y2="58" marker-start="url(#arr)" marker-end="url(#arr)"/>
+          <rect class="d-bg" x="138" y="50" width="44" height="14"/><text class="d-txt" x="142" y="61">120.0</text>
+          <line class="d-dim" x1="62" y1="86" x2="34" y2="86"/><line class="d-dim" x1="62" y1="260" x2="34" y2="260"/>
+          <line class="d-dim" x1="42" y1="86" x2="42" y2="260" marker-start="url(#arr)" marker-end="url(#arr)"/>
+          <rect class="d-bg" x="28" y="150" width="28" height="42"/><text class="d-txt" x="38" y="188" transform="rotate(-90 38 188)">90.0</text>
+          <line class="d-dim" x1="330" y1="86" x2="372" y2="86"/><line class="d-dim" x1="330" y1="112" x2="372" y2="112"/>
+          <line class="d-dim" x1="364" y1="60" x2="364" y2="86" marker-end="url(#arr)"/><line class="d-dim" x1="364" y1="138" x2="364" y2="112" marker-end="url(#arr)"/>
+          <text class="d-txt" x="372" y="104">6.35 ±0.1</text>
+          <line class="d-dim" x1="176" y1="124" x2="232" y2="158"/><text class="d-note" x="186" y="172">2× Ø8.5 TRAV.</text>
+          <line class="d-dim" x1="96" y1="220" x2="140" y2="244"/><text class="d-note" x="120" y="258">OBLONG 8.5 × 28</text>
+          <line class="d-dim" x1="0" y1="296" x2="480" y2="296" style="stroke:var(--line)"/>
+          <text class="d-txt" x="16" y="318" style="fill:var(--muted)">MAT. ACIER 1020 · COTES EN MM</text>
+          <text class="d-note" x="372" y="318">✓ APPROUVÉ</text>
+        </svg>
+      </figure>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="tag">Services</span>
+          <h2><span data-l="fr">Ce que nous réalisons pour vous</span><span data-l="en">What we do for you</span></h2>
+        </div>
+        <p><span data-l="fr">Un besoin ponctuel ou un surplus de travail au bureau technique? Nous prenons le relais sur une pièce, un assemblage ou un lot de dessins.</span><span data-l="en">A one-off need or an overloaded engineering team? We take over a part, an assembly or a batch of drawings.</span></p>
+      </div>
+      <div class="svc">
+        <article>
+          <span class="code">CAO-01</span>
+          <h3><span data-l="fr">Modélisation 3D paramétrique</span><span data-l="en">Parametric 3D modelling</span></h3>
+          <p><span data-l="fr">Pièces et assemblages modélisés proprement, faciles à modifier par la suite.</span><span data-l="en">Clean part and assembly models that are easy to modify later.</span></p>
+          <ul>
+            <li><span data-l="fr">Pièces usinées, tôlerie, plastique</span><span data-l="en">Machined, sheet metal, plastic parts</span></li>
+            <li><span data-l="fr">Assemblages et sous-assemblages</span><span data-l="en">Assemblies and sub-assemblies</span></li>
+            <li><span data-l="fr">Configurations et familles de pièces</span><span data-l="en">Configurations and part families</span></li>
+          </ul>
+        </article>
+        <article>
+          <span class="code">CAO-02</span>
+          <h3><span data-l="fr">Mises en plan de fabrication</span><span data-l="en">Manufacturing drawings</span></h3>
+          <p><span data-l="fr">Dessins cotés et tolérancés, lisibles par l'atelier et vos sous-traitants.</span><span data-l="en">Dimensioned and toleranced drawings your shop and suppliers can read.</span></p>
+          <ul>
+            <li><span data-l="fr">Cotation et tolérances</span><span data-l="en">Dimensioning and tolerances</span></li>
+            <li><span data-l="fr">Vues de détail, coupes, nomenclatures</span><span data-l="en">Detail views, sections, bills of materials</span></li>
+            <li><span data-l="fr">Gabarit de cartouche à vos couleurs</span><span data-l="en">Title block in your company format</span></li>
+          </ul>
+        </article>
+        <article>
+          <span class="code">CAO-03</span>
+          <h3><span data-l="fr">Rétro-ingénierie</span><span data-l="en">Reverse engineering</span></h3>
+          <p><span data-l="fr">Une pièce sans plan? Nous la mesurons et la remodélisons pour la refaire ou l'améliorer.</span><span data-l="en">A part with no drawing? We measure and remodel it so it can be remade or improved.</span></p>
+          <ul>
+            <li><span data-l="fr">Pièces d'usure et de remplacement</span><span data-l="en">Wear and replacement parts</span></li>
+            <li><span data-l="fr">Équipements anciens sans documentation</span><span data-l="en">Older equipment with no documentation</span></li>
+            <li><span data-l="fr">Modèle 3D et mise en plan complète</span><span data-l="en">3D model and full drawing</span></li>
+          </ul>
+        </article>
+        <article>
+          <span class="code">CAO-04</span>
+          <h3><span data-l="fr">Conversion de fichiers</span><span data-l="en">File conversion</span></h3>
+          <p><span data-l="fr">Du croquis papier ou du PDF au modèle 3D, ou d'un format à l'autre.</span><span data-l="en">From paper sketch or PDF to 3D model, or from one format to another.</span></p>
+          <ul>
+            <li><span data-l="fr">Croquis et PDF vers modèle 3D</span><span data-l="en">Sketch and PDF to 3D model</span></li>
+            <li><span data-l="fr">Nettoyage de fichiers STEP et IGES</span><span data-l="en">STEP and IGES clean-up</span></li>
+            <li><span data-l="fr">Dessins 2D vers DXF</span><span data-l="en">2D drawings to DXF</span></li>
+          </ul>
+        </article>
+        <article>
+          <span class="code">CAO-05</span>
+          <h3><span data-l="fr">Préparation à la fabrication</span><span data-l="en">Manufacturing prep</span></h3>
+          <p><span data-l="fr">Des fichiers prêts à envoyer au découpeur, au machiniste ou à l'imprimante.</span><span data-l="en">Files ready to send to the cutter, the machinist or the printer.</span></p>
+          <ul>
+            <li><span data-l="fr">Développés de tôlerie en DXF</span><span data-l="en">Sheet metal flat patterns in DXF</span></li>
+            <li><span data-l="fr">Fichiers pour découpe laser et usinage</span><span data-l="en">Files for laser cutting and machining</span></li>
+            <li><span data-l="fr">Fichiers STL pour impression 3D</span><span data-l="en">STL files for 3D printing</span></li>
+          </ul>
+        </article>
+        <article>
+          <span class="code">CAO-06</span>
+          <h3><span data-l="fr">Prototypes imprimés en 3D</span><span data-l="en">3D-printed prototypes</span></h3>
+          <p><span data-l="fr">Validez la forme et l'ajustement avant de lancer l'usinage ou l'outillage.</span><span data-l="en">Check form and fit before committing to machining or tooling.</span></p>
+          <ul>
+            <li><span data-l="fr">Impression à l'interne</span><span data-l="en">Printed in-house</span></li>
+            <li><span data-l="fr">PLA, PETG, ABS, ASA</span><span data-l="en">PLA, PETG, ABS, ASA</span></li>
+            <li><span data-l="fr">Vérification des ajustements</span><span data-l="en">Fit checks</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="tag"><span data-l="fr">Outils et formats</span><span data-l="en">Tools &amp; formats</span></span>
+          <h2><span data-l="fr">Des fichiers compatibles avec votre atelier</span><span data-l="en">Files that work with your shop</span></h2>
+        </div>
+        <p><span data-l="fr">Nous livrons dans les formats dont vous avez besoin, dans les unités de votre choix.</span><span data-l="en">We deliver in the formats you need, in the units of your choice.</span></p>
+      </div>
+      <div class="tools">
+        <div class="box">
+          <h3><span data-l="fr">Logiciels</span><span data-l="en">Software</span></h3>
+          <table>
+            <tr><th>Onshape</th><td><span data-l="fr">Modélisation, assemblages, mises en plan</span><span data-l="en">Modelling, assemblies, drawings</span></td></tr>
+            <tr><th>Fusion 360</th><td><span data-l="fr">Modélisation, surfaces, préparation à la fabrication</span><span data-l="en">Modelling, surfacing, manufacturing prep</span></td></tr>
+            <tr><th><span data-l="fr">Impression 3D</span><span data-l="en">3D printing</span></th><td><span data-l="fr">Deux imprimantes Bambu Lab à l'interne</span><span data-l="en">Two in-house Bambu Lab printers</span></td></tr>
+          </table>
+        </div>
+        <div class="box">
+          <h3><span data-l="fr">Formats livrés</span><span data-l="en">Delivered formats</span></h3>
+          <table>
+            <tr><th>STEP · IGES</th><td><span data-l="fr">Modèles 3D neutres</span><span data-l="en">Neutral 3D models</span></td></tr>
+            <tr><th>DXF · DWG</th><td><span data-l="fr">Dessins 2D et développés</span><span data-l="en">2D drawings and flat patterns</span></td></tr>
+            <tr><th>PDF</th><td><span data-l="fr">Mises en plan cotées</span><span data-l="en">Dimensioned drawings</span></td></tr>
+            <tr><th>STL · 3MF</th><td><span data-l="fr">Impression 3D</span><span data-l="en">3D printing</span></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="tag"><span data-l="fr">Fonctionnement</span><span data-l="en">How it works</span></span>
+          <h2><span data-l="fr">Simple et facturé à l'heure</span><span data-l="en">Simple, billed by the hour</span></h2>
+        </div>
+        <p><span data-l="fr">Vous recevez une estimation d'heures avant le début des travaux. Pas de surprise sur la facture.</span><span data-l="en">You receive an hour estimate before work begins. No surprises on the invoice.</span></p>
+      </div>
+      <ol class="how">
+        <li><b><span data-l="fr">Envoyez vos fichiers</span><span data-l="en">Send your files</span></b><span><span data-l="fr">Croquis, photos, PDF, modèles existants ou pièce physique.</span><span data-l="en">Sketches, photos, PDFs, existing models or a physical part.</span></span></li>
+        <li><b><span data-l="fr">Recevez une estimation</span><span data-l="en">Get an estimate</span></b><span><span data-l="fr">Nombre d'heures et délai, confirmés avant de commencer.</span><span data-l="en">Hours and timeline, confirmed before we start.</span></span></li>
+        <li><b><span data-l="fr">Révisez le travail</span><span data-l="en">Review the work</span></b><span><span data-l="fr">Lien de visualisation ou PDF pour vos commentaires.</span><span data-l="en">Viewer link or PDF for your comments.</span></span></li>
+        <li><b><span data-l="fr">Recevez vos fichiers</span><span data-l="en">Receive your files</span></b><span><span data-l="fr">Livraison dans les formats et unités demandés.</span><span data-l="en">Delivered in the formats and units you need.</span></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact-info">
+        <span class="tag">Contact</span>
+        <h2><span data-l="fr">Demandez une soumission</span><span data-l="en">Request a quote</span></h2>
+        <p><span data-l="fr">Décrivez le travail à faire. Pour joindre des fichiers, écrivez-nous directement par courriel. Réponse en un jour ouvrable.</span><span data-l="en">Describe the work needed. To attach files, email us directly. Reply within one business day.</span></p>
+        <a class="mail" href="mailto:info@designcreato.ca">info@designcreato.ca</a>
+      </div>
+      <form id="brief" name="creacad-contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="creacad-contact">
+        <p hidden><label>Ne pas remplir : <input name="bot-field"></label></p>
+        <div class="row">
+          <div class="field"><label for="f-nom"><span data-l="fr">Nom</span><span data-l="en">Name</span></label><input id="f-nom" name="nom" autocomplete="name" required></div>
+          <div class="field"><label for="f-ent"><span data-l="fr">Entreprise</span><span data-l="en">Company</span></label><input id="f-ent" name="entreprise" autocomplete="organization"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="f-mail"><span data-l="fr">Courriel</span><span data-l="en">Email</span></label><input id="f-mail" name="courriel" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="f-type"><span data-l="fr">Type de travail</span><span data-l="en">Type of work</span></label>
+            <select id="f-type" name="type">
+              <option>Modélisation 3D / 3D modelling</option>
+              <option>Mise en plan / Drawings</option>
+              <option>Rétro-ingénierie / Reverse engineering</option>
+              <option>Conversion de fichiers / File conversion</option>
+              <option>Prototype 3D</option>
+              <option>Autre / Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="f-desc"><span data-l="fr">Description</span><span data-l="en">Description</span></label><textarea id="f-desc" name="description"></textarea></div>
+        <p class="consent"><span data-l="fr">Vos renseignements sont utilisés uniquement pour répondre à votre demande.</span><span data-l="en">Your information is used solely to respond to your request.</span></p>
+        <div class="foot">
+          <span class="msg" id="msg" role="status"></span>
+          <button class="btn" type="submit" id="send"><span data-l="fr">Envoyer la demande</span><span data-l="en">Send request</span></button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>CreaCad · <span data-l="fr">une division de</span><span data-l="en">a division of</span> <a href="https://designcreato.ca">Design Creato</a></span>
+    <span><a href="https://designcreato.ca/confidentialite.html"><span data-l="fr">Politique de confidentialité</span><span data-l="en">Privacy policy</span></a> · © <span id="yr">2026</span></span>
+  </div>
+</footer>
+
 <script>
+  const T = {
+    fr: { name: 'Veuillez indiquer votre nom.', email: 'Veuillez entrer une adresse courriel valide.', sending: 'Envoi en cours…', ok: 'Merci! Nous vous répondrons dans un délai d’un jour ouvrable.', fail: 'Envoi impossible pour le moment. Écrivez-nous à info@designcreato.ca.' },
+    en: { name: 'Please enter your name.', email: 'Please enter a valid email address.', sending: 'Sending…', ok: 'Thank you! We will reply within one business day.', fail: 'Unable to send right now. Please email info@designcreato.ca.' }
+  };
   let lang = 'fr';
-  const set = l => { lang = l; document.documentElement.lang = l === 'fr' ? 'fr-CA' : 'en-CA'; };
-  document.getElementById('lang').onclick = () => set(lang === 'fr' ? 'en' : 'fr');
+  function setLang(l) {
+    lang = l;
+    document.documentElement.lang = l === 'fr' ? 'fr-CA' : 'en-CA';
+    document.getElementById('msg').textContent = '';
+    try { localStorage.setItem('cc-lang', l); } catch (e) {}
+  }
+  let saved = null; try { saved = localStorage.getItem('cc-lang'); } catch (e) {}
+  setLang(saved === 'en' ? 'en' : 'fr');
+  document.getElementById('lang').onclick = () => setLang(lang === 'fr' ? 'en' : 'fr');
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const form = document.getElementById('brief');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const msg = document.getElementById('msg'), send = document.getElementById('send');
+    const n = document.getElementById('f-nom'), m = document.getElementById('f-mail');
+    if (!n.value.trim()) { msg.textContent = T[lang].name; n.focus(); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m.value.trim())) { msg.textContent = T[lang].email; m.focus(); return; }
+    send.disabled = true; msg.textContent = T[lang].sending;
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form)).toString() })
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); form.reset(); msg.textContent = T[lang].ok; })
+      .catch(err => { msg.textContent = T[lang].fail + ' (' + err.message + ')'; })
+      .finally(() => { send.disabled = false; });
+  });
 </script>
 </body>
 </html>
