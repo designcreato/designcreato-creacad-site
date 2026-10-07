@@ -54,6 +54,9 @@ header .btn { padding: 10px 14px; font-size: .88rem; }
 .hero-copy { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
 .hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800; line-height: 1.04; letter-spacing: -.035em; }
 .hero h1 b { color: var(--orange); font-weight: 800; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.pin { display: inline-flex; align-items: center; gap: 7px; font: 500 .78rem/1 var(--mono); color: var(--fg); background: var(--panel-2); border: 1px solid var(--line); padding: 7px 11px 7px 9px; border-radius: 999px; }
+.pin svg { width: 13px; height: 13px; fill: var(--orange); }
 .hero-copy > p { color: var(--muted); font-size: 1.12rem; max-width: 46ch; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .specs { display: flex; flex-wrap: wrap; gap: 8px 22px; font: 400 .82rem/1.4 var(--mono); color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
@@ -79,15 +82,14 @@ section { padding-block: clamp(56px, 8vw, 96px); border-top: 1px solid var(--lin
 .head p { color: var(--muted); max-width: 48ch; }
 @media (max-width: 800px) { .head { grid-template-columns: 1fr; } }
 
-.svc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
-.svc article { background: var(--panel); padding: 28px 24px 30px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.svc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.svc article { background: var(--panel); padding: 32px 30px 34px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .svc .code { font: 500 .74rem/1 var(--mono); color: var(--orange); letter-spacing: .06em; }
-.svc h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -.01em; }
+.svc h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -.01em; }
 .svc p { color: var(--muted); font-size: .95rem; }
 .svc ul { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: .9rem; }
 .svc li { padding-left: 16px; position: relative; }
 .svc li::before { content: ""; position: absolute; left: 0; top: .62em; width: 7px; height: 1.5px; background: var(--blue); }
-@media (max-width: 900px) { .svc { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .svc { grid-template-columns: 1fr; } }
 
 /* Outils et formats */
@@ -155,7 +157,10 @@ footer a:hover { color: var(--fg); }
   <div class="hero">
     <div class="wrap">
       <div class="hero-copy">
-        <span class="tag"><span data-l="fr">Services de CAO · Division de Design Creato</span><span data-l="en">CAD services · A Design Creato division</span></span>
+        <div class="meta">
+          <span class="tag"><span data-l="fr">Services de CAO · Division de Design Creato</span><span data-l="en">CAD services · A Design Creato division</span></span>
+          <span class="pin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Québec, Canada</span>
+        </div>
         <h1><span data-l="fr">Modèles 3D et mises en plan <b>prêts pour l'atelier</b>.</span><span data-l="en">3D models and drawings <b>ready for the shop floor</b>.</span></h1>
         <p><span data-l="fr">CreaCad réalise vos travaux de conception assistée par ordinateur à l'heure : modélisation, dessins de fabrication, rétro-ingénierie et conversion de fichiers. Sans mandat de conception complet, sans engagement à long terme.</span><span data-l="en">CreaCad handles your computer-aided design work by the hour: modelling, manufacturing drawings, reverse engineering and file conversion. No full design contract, no long-term commitment.</span></p>
         <div class="actions">
@@ -164,8 +169,7 @@ footer a:hover { color: var(--fg); }
         </div>
         <div class="specs">
           <span><b>Onshape</b> · <b>Fusion 360</b></span>
-          <span>STEP · IGES · DXF · STL · PDF</span>
-          <span><span data-l="fr">Métrique ou impérial</span><span data-l="en">Metric or imperial</span></span>
+                    <span>STEP · DXF · DWG · PDF · STL</span>
         </div>
       </div>
 
@@ -214,121 +218,32 @@ footer a:hover { color: var(--fg); }
       <div class="head">
         <div>
           <span class="tag">Services</span>
-          <h2><span data-l="fr">Ce que nous réalisons pour vous</span><span data-l="en">What we do for you</span></h2>
+          <h2><span data-l="fr">Nos services</span><span data-l="en">Our services</span></h2>
         </div>
-        <p><span data-l="fr">Un besoin ponctuel ou un surplus de travail au bureau technique? Nous prenons le relais sur une pièce, un assemblage ou un lot de dessins.</span><span data-l="en">A one-off need or an overloaded engineering team? We take over a part, an assembly or a batch of drawings.</span></p>
+        <p><span data-l="fr">Un besoin ponctuel ou un surplus de travail au bureau technique? Nous prenons le relais, à l'heure, sur une pièce, un assemblage ou un lot de dessins.</span><span data-l="en">A one-off need or an overloaded engineering team? We take over by the hour on a part, an assembly or a batch of drawings.</span></p>
       </div>
       <div class="svc">
         <article>
-          <span class="code">CAO-01</span>
-          <h3><span data-l="fr">Modélisation 3D paramétrique</span><span data-l="en">Parametric 3D modelling</span></h3>
-          <p><span data-l="fr">Pièces et assemblages modélisés proprement, faciles à modifier par la suite.</span><span data-l="en">Clean part and assembly models that are easy to modify later.</span></p>
-          <ul>
-            <li><span data-l="fr">Pièces usinées, tôlerie, plastique</span><span data-l="en">Machined, sheet metal, plastic parts</span></li>
-            <li><span data-l="fr">Assemblages et sous-assemblages</span><span data-l="en">Assemblies and sub-assemblies</span></li>
-            <li><span data-l="fr">Configurations et familles de pièces</span><span data-l="en">Configurations and part families</span></li>
-          </ul>
+          <span class="code">01</span>
+          <h3><span data-l="fr">Modélisation 3D</span><span data-l="en">3D modelling</span></h3>
+          <p><span data-l="fr">Pièces et assemblages modélisés à partir de vos croquis, photos ou plans existants. Des modèles paramétriques propres, faciles à modifier par la suite et prêts pour la fabrication.</span><span data-l="en">Parts and assemblies modelled from your sketches, photos or existing drawings. Clean parametric models that are easy to modify later and ready for manufacturing.</span></p>
         </article>
         <article>
-          <span class="code">CAO-02</span>
-          <h3><span data-l="fr">Mises en plan de fabrication</span><span data-l="en">Manufacturing drawings</span></h3>
-          <p><span data-l="fr">Dessins cotés et tolérancés, lisibles par l'atelier et vos sous-traitants.</span><span data-l="en">Dimensioned and toleranced drawings your shop and suppliers can read.</span></p>
-          <ul>
-            <li><span data-l="fr">Cotation et tolérances</span><span data-l="en">Dimensioning and tolerances</span></li>
-            <li><span data-l="fr">Vues de détail, coupes, nomenclatures</span><span data-l="en">Detail views, sections, bills of materials</span></li>
-            <li><span data-l="fr">Gabarit de cartouche à vos couleurs</span><span data-l="en">Title block in your company format</span></li>
-          </ul>
+          <span class="code">02</span>
+          <h3><span data-l="fr">Mise en plan 2D</span><span data-l="en">2D drawings</span></h3>
+          <p><span data-l="fr">Dessins de fabrication cotés et tolérancés, plans d'assemblage et nomenclatures. Livrés en PDF, DXF ou DWG, lisibles par votre atelier et vos sous-traitants.</span><span data-l="en">Dimensioned and toleranced manufacturing drawings, assembly drawings and bills of materials. Delivered as PDF, DXF or DWG, readable by your shop and suppliers.</span></p>
         </article>
         <article>
-          <span class="code">CAO-03</span>
+          <span class="code">03</span>
           <h3><span data-l="fr">Rétro-ingénierie</span><span data-l="en">Reverse engineering</span></h3>
-          <p><span data-l="fr">Une pièce sans plan? Nous la mesurons et la remodélisons pour la refaire ou l'améliorer.</span><span data-l="en">A part with no drawing? We measure and remodel it so it can be remade or improved.</span></p>
-          <ul>
-            <li><span data-l="fr">Pièces d'usure et de remplacement</span><span data-l="en">Wear and replacement parts</span></li>
-            <li><span data-l="fr">Équipements anciens sans documentation</span><span data-l="en">Older equipment with no documentation</span></li>
-            <li><span data-l="fr">Modèle 3D et mise en plan complète</span><span data-l="en">3D model and full drawing</span></li>
-          </ul>
+          <p><span data-l="fr">Une pièce sans plan? Nous la mesurons et la remodélisons pour pouvoir la refaire, la modifier ou l'améliorer. Idéal pour les pièces d'usure et les équipements sans documentation.</span><span data-l="en">A part with no drawing? We measure and remodel it so it can be remade, modified or improved. Ideal for wear parts and undocumented equipment.</span></p>
         </article>
         <article>
-          <span class="code">CAO-04</span>
-          <h3><span data-l="fr">Conversion de fichiers</span><span data-l="en">File conversion</span></h3>
-          <p><span data-l="fr">Du croquis papier ou du PDF au modèle 3D, ou d'un format à l'autre.</span><span data-l="en">From paper sketch or PDF to 3D model, or from one format to another.</span></p>
-          <ul>
-            <li><span data-l="fr">Croquis et PDF vers modèle 3D</span><span data-l="en">Sketch and PDF to 3D model</span></li>
-            <li><span data-l="fr">Nettoyage de fichiers STEP et IGES</span><span data-l="en">STEP and IGES clean-up</span></li>
-            <li><span data-l="fr">Dessins 2D vers DXF</span><span data-l="en">2D drawings to DXF</span></li>
-          </ul>
-        </article>
-        <article>
-          <span class="code">CAO-05</span>
-          <h3><span data-l="fr">Préparation à la fabrication</span><span data-l="en">Manufacturing prep</span></h3>
-          <p><span data-l="fr">Des fichiers prêts à envoyer au découpeur, au machiniste ou à l'imprimante.</span><span data-l="en">Files ready to send to the cutter, the machinist or the printer.</span></p>
-          <ul>
-            <li><span data-l="fr">Développés de tôlerie en DXF</span><span data-l="en">Sheet metal flat patterns in DXF</span></li>
-            <li><span data-l="fr">Fichiers pour découpe laser et usinage</span><span data-l="en">Files for laser cutting and machining</span></li>
-            <li><span data-l="fr">Fichiers STL pour impression 3D</span><span data-l="en">STL files for 3D printing</span></li>
-          </ul>
-        </article>
-        <article>
-          <span class="code">CAO-06</span>
-          <h3><span data-l="fr">Prototypes imprimés en 3D</span><span data-l="en">3D-printed prototypes</span></h3>
-          <p><span data-l="fr">Validez la forme et l'ajustement avant de lancer l'usinage ou l'outillage.</span><span data-l="en">Check form and fit before committing to machining or tooling.</span></p>
-          <ul>
-            <li><span data-l="fr">Impression à l'interne</span><span data-l="en">Printed in-house</span></li>
-            <li><span data-l="fr">PLA, PETG, ABS, ASA</span><span data-l="en">PLA, PETG, ABS, ASA</span></li>
-            <li><span data-l="fr">Vérification des ajustements</span><span data-l="en">Fit checks</span></li>
-          </ul>
+          <span class="code">04</span>
+          <h3><span data-l="fr">Prototypage 3D</span><span data-l="en">3D prototyping</span></h3>
+          <p><span data-l="fr">Impression 3D de vos pièces à l'interne pour valider la forme et l'ajustement avant de lancer l'usinage ou l'outillage.</span><span data-l="en">In-house 3D printing of your parts to check form and fit before committing to machining or tooling.</span></p>
         </article>
       </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="head">
-        <div>
-          <span class="tag"><span data-l="fr">Outils et formats</span><span data-l="en">Tools &amp; formats</span></span>
-          <h2><span data-l="fr">Des fichiers compatibles avec votre atelier</span><span data-l="en">Files that work with your shop</span></h2>
-        </div>
-        <p><span data-l="fr">Nous livrons dans les formats dont vous avez besoin, dans les unités de votre choix.</span><span data-l="en">We deliver in the formats you need, in the units of your choice.</span></p>
-      </div>
-      <div class="tools">
-        <div class="box">
-          <h3><span data-l="fr">Logiciels</span><span data-l="en">Software</span></h3>
-          <table>
-            <tr><th>Onshape</th><td><span data-l="fr">Modélisation, assemblages, mises en plan</span><span data-l="en">Modelling, assemblies, drawings</span></td></tr>
-            <tr><th>Fusion 360</th><td><span data-l="fr">Modélisation, surfaces, préparation à la fabrication</span><span data-l="en">Modelling, surfacing, manufacturing prep</span></td></tr>
-            <tr><th><span data-l="fr">Impression 3D</span><span data-l="en">3D printing</span></th><td><span data-l="fr">Deux imprimantes Bambu Lab à l'interne</span><span data-l="en">Two in-house Bambu Lab printers</span></td></tr>
-          </table>
-        </div>
-        <div class="box">
-          <h3><span data-l="fr">Formats livrés</span><span data-l="en">Delivered formats</span></h3>
-          <table>
-            <tr><th>STEP · IGES</th><td><span data-l="fr">Modèles 3D neutres</span><span data-l="en">Neutral 3D models</span></td></tr>
-            <tr><th>DXF · DWG</th><td><span data-l="fr">Dessins 2D et développés</span><span data-l="en">2D drawings and flat patterns</span></td></tr>
-            <tr><th>PDF</th><td><span data-l="fr">Mises en plan cotées</span><span data-l="en">Dimensioned drawings</span></td></tr>
-            <tr><th>STL · 3MF</th><td><span data-l="fr">Impression 3D</span><span data-l="en">3D printing</span></td></tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="head">
-        <div>
-          <span class="tag"><span data-l="fr">Fonctionnement</span><span data-l="en">How it works</span></span>
-          <h2><span data-l="fr">Simple et facturé à l'heure</span><span data-l="en">Simple, billed by the hour</span></h2>
-        </div>
-        <p><span data-l="fr">Vous recevez une estimation d'heures avant le début des travaux. Pas de surprise sur la facture.</span><span data-l="en">You receive an hour estimate before work begins. No surprises on the invoice.</span></p>
-      </div>
-      <ol class="how">
-        <li><b><span data-l="fr">Envoyez vos fichiers</span><span data-l="en">Send your files</span></b><span><span data-l="fr">Croquis, photos, PDF, modèles existants ou pièce physique.</span><span data-l="en">Sketches, photos, PDFs, existing models or a physical part.</span></span></li>
-        <li><b><span data-l="fr">Recevez une estimation</span><span data-l="en">Get an estimate</span></b><span><span data-l="fr">Nombre d'heures et délai, confirmés avant de commencer.</span><span data-l="en">Hours and timeline, confirmed before we start.</span></span></li>
-        <li><b><span data-l="fr">Révisez le travail</span><span data-l="en">Review the work</span></b><span><span data-l="fr">Lien de visualisation ou PDF pour vos commentaires.</span><span data-l="en">Viewer link or PDF for your comments.</span></span></li>
-        <li><b><span data-l="fr">Recevez vos fichiers</span><span data-l="en">Receive your files</span></b><span><span data-l="fr">Livraison dans les formats et unités demandés.</span><span data-l="en">Delivered in the formats and units you need.</span></span></li>
-      </ol>
     </div>
   </section>
 
@@ -354,8 +269,7 @@ footer a:hover { color: var(--fg); }
               <option>Modélisation 3D / 3D modelling</option>
               <option>Mise en plan / Drawings</option>
               <option>Rétro-ingénierie / Reverse engineering</option>
-              <option>Conversion de fichiers / File conversion</option>
-              <option>Prototype 3D</option>
+                            <option>Prototype 3D</option>
               <option>Autre / Other</option>
             </select>
           </div>
