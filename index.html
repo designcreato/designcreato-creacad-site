@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CreaCad · Services de CAO</title>
+<meta name="description" content="CreaCad, une division de Design Creato : modélisation 3D, mises en plan et services de CAO. Nouveau site en préparation.">
+<meta name="theme-color" content="#121418">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Public+Sans:wght@400;600&display=swap">
+<style>
+:root { --bg: #121418; --fg: #eceae5; --muted: #9a9ea6; --rule: #2a2e35; --orange: #ef6a1e; --blue: #2e8fd0;
+  --head: "Archivo", "Helvetica Neue", Arial, sans-serif; --text: "Public Sans", "Segoe UI", system-ui, sans-serif; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 1.0625rem/1.65 var(--text); display: flex; flex-direction: column; }
+a { color: inherit; }
+html[lang="fr-CA"] [data-l="en"], html[lang="en-CA"] [data-l="fr"] { display: none !important; }
+.wrap { width: 100%; max-width: 880px; margin-inline: auto; padding-inline: 24px; }
+header .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: 24px; }
+.brand { font: 800 1.25rem/1 var(--head); letter-spacing: -.01em; }
+.brand span { color: var(--orange); }
+.lang { font: 600 .8rem/1 var(--text); background: none; border: 1px solid var(--rule); color: var(--fg); padding: 8px 10px; border-radius: 4px; cursor: pointer; }
+main { flex: 1; display: flex; align-items: center; }
+main .wrap { display: flex; flex-direction: column; gap: 22px; padding-block: 48px; }
+.kicker { font: 600 .82rem/1 var(--text); letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
+h1 { margin: 0; font: 800 clamp(2.2rem, 6vw, 3.8rem)/1.04 var(--head); letter-spacing: -.03em; text-wrap: balance; }
+h1 b { color: var(--orange); }
+p { margin: 0; color: var(--muted); max-width: 52ch; font-size: 1.12rem; }
+.links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.btn { text-decoration: none; font: 600 1rem/1 var(--text); padding: 15px 22px; border-radius: 4px; background: var(--orange); color: #fff; }
+.btn.line { background: none; border: 1px solid var(--rule); color: var(--fg); }
+.btn:hover { filter: brightness(1.08); }
+footer { border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; }
+footer .wrap { padding-block: 22px 28px; }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="brand">Crea<span>Cad</span></span>
+  <button class="lang" type="button" id="lang"><span data-l="fr">EN</span><span data-l="en">FR</span></button>
+</div></header>
+<main><div class="wrap">
+  <span class="kicker"><span data-l="fr">Une division de Design Creato</span><span data-l="en">A Design Creato division</span></span>
+  <h1><span data-l="fr">Services de CAO, <b>nouveau site bientôt</b>.</span><span data-l="en">CAD services, <b>new website coming soon</b>.</span></h1>
+  <p><span data-l="fr">Modélisation 3D, mises en plan et conversion de fichiers. Notre nouveau site est en préparation. En attendant, écrivez-nous pour toute demande.</span><span data-l="en">3D modelling, manufacturing drawings and file conversion. Our new website is on its way. In the meantime, contact us with any request.</span></p>
+  <div class="links">
+    <a class="btn" href="mailto:info@designcreato.ca">info@designcreato.ca</a>
+    <a class="btn line" href="https://designcreato.ca">designcreato.ca</a>
+  </div>
+</div></main>
+<footer><div class="wrap">© <span id="yr">2026</span> CreaCad · Design Creato</div></footer>
+<script>
+  let lang = 'fr';
+  const set = l => { lang = l; document.documentElement.lang = l === 'fr' ? 'fr-CA' : 'en-CA'; };
+  document.getElementById('lang').onclick = () => set(lang === 'fr' ? 'en' : 'fr');
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
