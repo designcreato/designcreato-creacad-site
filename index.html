@@ -114,6 +114,12 @@ section { padding-block: clamp(56px, 8vw, 92px); border-top: 1px solid var(--lin
 .head { display: flex; flex-direction: column; gap: 12px; max-width: 640px; margin-bottom: 40px; }
 .head h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.08; }
 .head p { color: var(--muted); }
+.points { list-style: none; margin: -12px 0 44px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; counter-reset: p; }
+.points li { counter-increment: p; display: flex; flex-direction: column; gap: 6px; padding-top: 14px; border-top: 2px solid var(--line); min-width: 0; }
+.points li::before { content: "0" counter(p); font: 500 .8rem/1 var(--mono); color: var(--orange); margin-bottom: 4px; }
+.points b { font-weight: 700; font-size: 1.05rem; }
+.points li > span { color: var(--muted); font-size: .95rem; }
+@media (max-width: 760px) { .points { grid-template-columns: 1fr; gap: 18px; } }
 .svc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .svc article { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 28px 26px; display: flex; flex-direction: column; gap: 10px; min-width: 0; transition: border-color .2s; }
 .svc article:hover { border-color: var(--orange); }
@@ -230,8 +236,12 @@ footer a:hover { color: var(--fg); }
       <div class="head">
         <span class="tag">Services</span>
         <h2 id="services-titre"><span data-l="fr">Nos services de CAO</span><span data-l="en">Our CAD services</span></h2>
-        <p><span data-l="fr">Un besoin ponctuel ou un surplus de travail au bureau technique? Nous prenons le relais, facturé à l'heure, avec une estimation avant de commencer.</span><span data-l="en">A one-off need or an overloaded engineering team? We take over, billed by the hour, with an estimate before we start.</span></p>
       </div>
+      <ol class="points">
+        <li><b><span data-l="fr">Une extension de votre équipe</span><span data-l="en">An extension of your team</span></b><span><span data-l="fr">Sur une pièce, un assemblage ou un projet complet.</span><span data-l="en">On a single part, an assembly or a complete project.</span></span></li>
+        <li><b><span data-l="fr">Une estimation claire</span><span data-l="en">A clear estimate</span></b><span><span data-l="fr">Les heures et le délai sont confirmés avant de commencer.</span><span data-l="en">Hours and timeline confirmed before we start.</span></span></li>
+        <li><b><span data-l="fr">Des livrables précis</span><span data-l="en">Accurate deliverables</span></b><span><span data-l="fr">Des modèles et des dessins conformes à vos standards de fabrication.</span><span data-l="en">Models and drawings that meet your manufacturing standards.</span></span></li>
+      </ol>
       <div class="svc">
         <article>
           <span class="code">01</span>
